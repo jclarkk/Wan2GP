@@ -61,6 +61,7 @@ def main():
     parser.add_argument("--image-start", type=str, help="Path to start image")
     parser.add_argument("--image-end", type=str, help="Path to end image")
     parser.add_argument("--video-guide", type=str, help="Path to video guide")
+    parser.add_argument("--profile", action="store_true", help="mmgp profile", default=3)
     args = parser.parse_args()
 
     if args.image_start and args.video_guide:
@@ -72,7 +73,7 @@ def main():
         args.seed = np.random.randint(0, 1e9)
 
     print("[INFO] Loading model with MMGP offload...")
-    model, pipe, _ = load_models(args.model)
+    model, pipe, _ = load_models(args.model, args.profile)
 
     print("[INFO] Generating video...")
     torch.manual_seed(args.seed)
