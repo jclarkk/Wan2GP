@@ -82,12 +82,12 @@ def main():
     video_guide = args.video_guide if args.video_guide else None
 
     video_tensor = model.generate(
-        prompt=args.prompt,
+        input_prompt=args.prompt,
         input_frames=None,
         input_ref_images=None,
         input_masks=None,
         source_video=video_guide,
-        image=image_start,
+        image_start=image_start,
         image_end=image_end,
         frame_num=(args.video_length // 4) * 4 + 1,
         height=height,
