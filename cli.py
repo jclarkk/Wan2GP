@@ -81,6 +81,8 @@ def main():
     image_end = load_image(args.image_end) if args.image_end else None
     video_guide = args.video_guide if args.video_guide else None
 
+    model._interrupt = False
+
     video_tensor = model.generate(
         input_prompt=args.prompt,
         input_frames=None,
