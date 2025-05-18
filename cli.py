@@ -4,8 +4,8 @@ import os
 import torch
 from PIL import Image
 
+from wan.utils.models import load_models
 from wan.utils.utils import cache_video
-from wgp import load_models
 
 TRANSFORMER_CHOICES = [
     # WAN models
