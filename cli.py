@@ -102,6 +102,7 @@ def main():
         enable_RIFLEx=True,
         VAE_tile_size=128,
         joint_pass=True,
+        model_filename=args.model,
     )
 
     print("[INFO] Saving video...")
