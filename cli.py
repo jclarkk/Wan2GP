@@ -61,7 +61,7 @@ def main():
     parser.add_argument("--image-start", type=str, help="Path to start image")
     parser.add_argument("--image-end", type=str, help="Path to end image")
     parser.add_argument("--video-guide", type=str, help="Path to video guide")
-    parser.add_argument("--profile", action="store_true", help="mmgp profile", default=3)
+    parser.add_argument("--profile", type=int, help="mmgp profile", default=3)
     args = parser.parse_args()
 
     if args.image_start and args.video_guide:
