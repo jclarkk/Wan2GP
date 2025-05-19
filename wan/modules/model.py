@@ -1028,7 +1028,7 @@ class WanModel(ModelMixin, ConfigMixin):
             del c
 
         should_calc = True
-        if self.enable_teacache: 
+        if getattr(self, "enable_teacache", False):
             if x_id != 0:
                 should_calc = self.should_calc
             else:
@@ -1058,7 +1058,7 @@ class WanModel(ModelMixin, ConfigMixin):
                 x += self.previous_residual[x_id]
             x = None
         else:
-            if self.enable_teacache:
+            if getattr(self, "enable_teacache", False):
                 if joint_pass:
                     self.previous_residual = [ None ] * len(self.previous_residual)
                 else:
@@ -1085,7 +1085,7 @@ class WanModel(ModelMixin, ConfigMixin):
                         del x
                     del context, hints
 
-            if self.enable_teacache:
+            if getattr(self, "enable_teacache", False):
                 if joint_pass:
                     for i, (x, ori, is_source) in enumerate(zip(x_list, ori_hidden_states, is_source_x)) :
                         if i == 0 or is_source and i != last_x_idx  :

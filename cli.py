@@ -3,6 +3,7 @@ import numpy as np
 import os
 import torch
 from PIL import Image
+from mmgp import offload
 
 from wan.utils.models import load_models
 from wan.utils.utils import cache_video
@@ -62,6 +63,10 @@ def main():
     parser.add_argument("--image-end", type=str, help="Path to end image")
     parser.add_argument("--video-guide", type=str, help="Path to video guide")
     parser.add_argument("--profile", type=int, help="mmgp profile", default=3)
+    parser.add_argument("--attention", type=str, default="sdpa",
+                        choices=["sdpa", "flash", "sage", "sage2", "xformers"],
+                        help="Attention mode to use"
+                        )
     args = parser.parse_args()
 
     if args.image_start and args.video_guide:
@@ -80,6 +85,8 @@ def main():
     image_start = load_image(args.image_start) if args.image_start else None
     image_end = load_image(args.image_end) if args.image_end else None
     video_guide = args.video_guide if args.video_guide else None
+
+    offload.shared_state["_attention"] = args.attention
 
     model._interrupt = False
 

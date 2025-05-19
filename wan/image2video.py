@@ -310,7 +310,7 @@ class WanI2V:
             "audio_context_lens": audio_context_lens,
             }) 
 
-        if self.model.enable_teacache:
+        if getattr(self.model, "enable_teacache", False):
             self.model.previous_residual = [None] * (3 if audio_cfg_scale !=None else 2)
             self.model.compute_teacache_threshold(self.model.teacache_start_step, timesteps, self.model.teacache_multiplier)
 

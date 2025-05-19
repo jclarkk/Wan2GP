@@ -376,6 +376,7 @@ def load_models(model_filename, profile):
                                              mixed_precision_transformer=mixed_precision_transformer)
     else:
         raise Exception(f"Model '{new_transformer_filename}' not supported.")
+    wan_model.enable_teacache = False
     wan_model._model_file_name = new_transformer_filename
     kwargs = {"extraModelsToQuantize": None}
     if profile in (2, 4, 5):
